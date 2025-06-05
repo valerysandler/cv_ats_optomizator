@@ -1,82 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resume GPT Optimizer</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f2f6fc, #e6efff);
-      color: #222;
-    }
-    .hero {
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      color: #444;
-    }
-    .btn {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      background-color: #1e88e5;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background-color: #1565c0;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 4rem 1rem;
-    }
-    .feature {
-      max-width: 300px;
-      margin: 1rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .feature h3 {
-      margin-top: 0;
-      color: #1e88e5;
-    }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="hero">
-    <h1>Optimize Your Resume with AI</h1>
-    <p>Instantly analyze and enhance your resume to match job descriptions. Get real ATS-ready results with GPT-4.</p>
-    <a href="https://ai-cv-maker.streamlit.app/" class="btn">Try Now</a>
-  </div>
-  <div class="features">
-    <div class="feature">
-      <h3>Smart Matching</h3>
-      <p>Analyze your resume with semantic GPT scoring, not just keywords.</p>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 bg-gradient-to-br from-blue-50 to-white">
+    <h1 class="text-5xl font-bold leading-tight text-blue-700 max-w-3xl">
+      Optimize your resume with GPT — instantly.
+    </h1>
+    <p class="mt-6 text-lg text-gray-600 max-w-xl">
+      Upload your resume, get a smart match score, and generate a new ATS-optimized version in seconds.
+    </p>
+    <a href="https://your-streamlit-app-url" class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-3 px-6 rounded-xl shadow-md">
+      🚀 Try it now
+    </a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-10">Features</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-100 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-blue-600 mb-2">Semantic Match Score</h3>
+          <p class="text-gray-600">Uses GPT-4 to understand how well your resume fits the job, beyond just keywords.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-blue-600 mb-2">ATS Optimization</h3>
+          <p class="text-gray-600">Your resume is restructured and enriched to pass Applicant Tracking Systems.</p>
+        </div>
+        <div class="p-6 bg-gray-100 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-blue-600 mb-2">Download Ready</h3>
+          <p class="text-gray-600">Download your enhanced resume directly and use it with confidence.</p>
+        </div>
+      </div>
     </div>
-    <div class="feature">
-      <h3>ATS Optimization</h3>
-      <p>Generate resumes that pass Applicant Tracking Systems with ease.</p>
-    </div>
-    <div class="feature">
-      <h3>Download & Use</h3>
-      <p>Get your optimized resume and download it directly as plain text.</p>
-    </div>
-  </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 px-6 bg-blue-600 text-white text-center">
+    <h2 class="text-3xl font-bold mb-4">Get hired faster with AI-powered resumes</h2>
+    <p class="text-lg mb-8">Let Recruiter Pro review and rewrite your resume in one click.</p>
+    <a href="https://your-streamlit-app-url" class="bg-white text-blue-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-100 transition">
+      Start Now →
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 text-center text-sm text-gray-500 bg-gray-100">
+    Made by Valery Sandler · Powered by GPT · MIT License
+  </footer>
 </body>
 </html>
