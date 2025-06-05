@@ -1,18 +1,42 @@
-
 import streamlit as st
 import re
 import openai
 
-# ✅ Инициализация клиента GPT
+# Инициализация клиента GPT
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 st.set_page_config(page_title="AI Resume Matcher", layout="centered")
-st.title("🤖 AI Resume vs Job Description Matcher")
-st.markdown("Upload your resume and a job description. Get match analysis and an optimized version for ATS.")
 
-resume_file = st.file_uploader("📄 Upload your resume (.txt, .docx or .pdf)", type=["txt", "docx", "pdf"])
-job_description = st.text_area("💼 Paste job description")
+# Переключатель языка
+lang = st.radio("🌐 Language / שפה", ["English", "עברית"], horizontal=True)
 
+# Переводы текста UI
+if lang == "English":
+    st.title("🤖 AI Resume vs Job Description Matcher")
+    upload_label = "📄 Upload your resume (.txt, .docx or .pdf)"
+    job_label = "💼 Paste job description"
+    analyze_btn = "🔍 Analyze Resume"
+    optimize_btn = "✍️ Generate Optimized Resume"
+    analysis_title = "📋 Match Analysis (Recruiter Pro):"
+    optimized_title = "🧾 Optimized Resume:"
+    spinner_analyze = "🧠 Evaluating resume..."
+    spinner_optimize = "📄 Generating optimized resume..."
+else:
+    st.title("🤖 התאמת קורות חיים למשרה בעזרת AI")
+    upload_label = "📄 העלה קובץ קורות חיים (.txt, .docx או .pdf)"
+    job_label = "💼 הדבק תיאור משרה"
+    analyze_btn = "🔍 נתח קורות חיים"
+    optimize_btn = "✍️ צור גרסה משופרת"
+    analysis_title = "📋 ניתוח התאמה (Recruiter Pro):"
+    optimized_title = "🧾 קורות חיים מותאמים:"
+    spinner_analyze = "🧠 מבצע ניתוח..."
+    spinner_optimize = "📄 יוצר קורות חיים חדשים..."
+
+# UI Elements
+resume_file = st.file_uploader(upload_label, type=["txt", "docx", "pdf"])
+job_description = st.text_area(job_label)
+
+# Извлечение текста
 def extract_text(file):
     import docx2txt
     import pdfplumber
@@ -27,7 +51,7 @@ def extract_text(file):
 
 resume_text = extract_text(resume_file) if resume_file else ""
 
-# 🧠 System Prompt в стиле Recruiter Pro
+# Анализ
 system_prompt = """
 You are an expert technical recruiter and ATS algorithm analyst.
 Evaluate how well a resume fits a job description.
@@ -40,9 +64,8 @@ Provide:
 5. Clear suggestions to improve resume for both ATS and recruiters
 """
 
-# 🔍 Анализ соответствия
-if st.button("🔍 Analyze Resume") and resume_text and job_description:
-    with st.spinner("🧠 Evaluating resume..."):
+if st.button(analyze_btn) and resume_text and job_description:
+    with st.spinner(spinner_analyze):
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"Job description:\n{job_description}\n\nResume:\n{resume_text}"}
@@ -53,12 +76,12 @@ if st.button("🔍 Analyze Resume") and resume_text and job_description:
             temperature=0.5,
         )
         result = response.choices[0].message.content
-        st.subheader("📋 Match Analysis (Recruiter Pro):")
+        st.subheader(analysis_title)
         st.markdown(result)
 
-# ✍️ Генерация резюме
-if st.button("✍️ Generate Optimized Resume") and resume_text and job_description:
-    with st.spinner("📄 Generating optimized resume..."):
+# Генерация нового резюме
+if st.button(optimize_btn) and resume_text and job_description:
+    with st.spinner(spinner_optimize):
         rewrite_prompt = f"""
 You are an expert in writing professional ATS-compatible resumes.
 
@@ -85,5 +108,5 @@ Please rewrite the resume using these guidelines:
             temperature=0.7,
         )
         optimized = response.choices[0].message.content
-        st.subheader("🧾 Optimized Resume:")
+        st.subheader(optimized_title)
         st.code(optimized, language="markdown")
